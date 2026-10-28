@@ -95,6 +95,7 @@ class CoreTest {
         e.tick(t + 1000, 1.0, 3, car.copy(lat = 36.95))
         assertEquals("천안졸음쉼터", (e.answer(true).first { it is Cmd.AddRestStop } as Cmd.AddRestStop).stop.name)
         assertTrue(e.restAdded)
+        assertEquals("천안졸음쉼터", e.addedStop!!.name)
         assertTrue(e.answer(true).isEmpty())   // a closed question ignores late answers
     }
 }

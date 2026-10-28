@@ -41,6 +41,7 @@ class Engine(private val stops: RestStops) {
     var question: String? = null; private set
     var askedStop: Pair<RestStop, Double>? = null; private set
     var restAdded = false; private set
+    var addedStop: RestStop? = null; private set   // the waypoint we added, shown until the rest
     var car: CarState? = null; private set
     val events = ArrayDeque<String>()
 
@@ -74,6 +75,7 @@ class Engine(private val stops: RestStops) {
             driveMin = 0.0
             selfReport = false
             restAdded = false
+            addedStop = null
             if (step >= 2) out += Cmd.CoolCabin(false)
             step = 0
             note("휴식 확인, 운전 시간을 다시 셉니다")
@@ -184,6 +186,7 @@ class Engine(private val stops: RestStops) {
 
     private fun addRestStop(stop: Pair<RestStop, Double>): List<Cmd> {
         restAdded = true
+        addedStop = stop.first
         waitingAnswer = false
         question = null
         note("${stop.first.name} 경유지 추가")

@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.arka.sumteum.car.DemoCarLink
 import com.arka.sumteum.core.Co2Model
+import com.arka.sumteum.core.RestStops
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -97,10 +98,13 @@ class MainActivity : Activity() {
         v.level.setTextColor(when (e.risk.level) { 0 -> getColor(R.color.text); 3 -> getColor(R.color.danger); else -> accent })
         v.factors.text = e.risk.parts.joinToString("\n") { "${it.first}  +${it.second}" }
 
-        val stop = e.nextStop
+        // After a waypoint is added, keep showing that stop rather than whatever is nearest.
+        val added = e.addedStop
+        val stop = if (added != null && car.lat != null && car.lon != null)
+            added to RestStops.km(car.lat, car.lon, added.lat, added.lon) else e.nextStop
         v.stop.text = stop?.first?.name ?: "찾는 중"
         v.km.text = stop?.let { (if (it.second < 10) "%.1f km" else "%.0f km").format(it.second) } ?: ""
-        v.waypoint.text = if (cab.waypoint != null) "경유지로 추가됨" else ""
+        v.waypoint.text = if (added != null && car.driving) "경유지로 추가됨" else ""
 
         for (i in 0 until v.ladder.childCount) {
             val t = v.ladder.getChildAt(i) as TextView
