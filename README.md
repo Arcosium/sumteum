@@ -14,6 +14,7 @@
 
 - 파일: `Arka_Sumteum_release.apk` (release 서명, arm64-v8a·x86_64)
 - 위치: [GitHub Release v1.0.0](https://github.com/Arcosium/sumteum/releases/tag/v1.0.0)
+- 시연 영상: 같은 Release의 `Sumteum_demo.mp4` (1분 39초, 시연 주행 화면 녹화와 Gleo 호출)
 - APK가 24MB라 저장소 폴더 대신 Release에 올렸습니다. 대부분은 Pleos 음성 SDK(TextToSpeech·SpeechToText)가 함께 넣는 보안 라이브러리입니다.
 
 ## 실행 방법
