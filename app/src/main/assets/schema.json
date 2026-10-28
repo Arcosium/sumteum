@@ -1,0 +1,35 @@
+{
+  "packageName": "com.arka.sumteum",
+  "appDescription": "A drowsy-driving prevention app that estimates cabin carbon dioxide from seat occupancy and climate settings, refreshes the cabin air and suggests rest stops ahead.",
+  "invokeWord": "숨틈",
+  "version": "1.0.0",
+  "actionCalls": [
+    {
+      "type": "function",
+      "function": {
+        "name": "VENTILATE_CABIN",
+        "description": "Bring outside air into the cabin for a short time to lower carbon dioxide, then restore the previous climate setting.",
+        "parameters": {"type": "object", "properties": {}, "required": []},
+        "component": "service"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ADD_REST_STOP",
+        "description": "Add the nearest rest area or drowsy-driving shelter ahead on the road as a navigation waypoint.",
+        "parameters": {"type": "object", "properties": {}, "required": []},
+        "component": "service"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "REPORT_DROWSINESS",
+        "description": "Record that the driver feels sleepy, then refresh the cabin air, cool the cabin and add the next rest stop as a waypoint.",
+        "parameters": {"type": "object", "properties": {}, "required": []},
+        "component": "service"
+      }
+    }
+  ]
+}
